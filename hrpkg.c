@@ -9,6 +9,7 @@
 #include "types.h"
 #include "defines.h"
 #include "utils.h"
+#include "path.h"
 
 #include "package.h"
 
@@ -39,7 +40,8 @@ int main(int argc, char** argv) {
     }
   }
 
-  printf("%d\n", serv.flags);
+  setWorkingDir();
+  setInstallDir();
 
   if (!serv.flags)
     exit_lmao:

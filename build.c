@@ -5,11 +5,9 @@
 
 #include "package.h"
 #include "utils.h"
-
-static char dir[255];
+#include "path.h"
 
 uint8_t checkBuild(const char* pkg) {
-  getcwd(dir, 255);
   if (getVerbose()) {
     printf("Checking package %s for building\n", pkg);
     printf("chdir() into %s\n", pkg);
@@ -17,10 +15,10 @@ uint8_t checkBuild(const char* pkg) {
   struct stat build;
   chdir(pkg);
   if (stat("hrpkgBuild", &build) != 0) {
-    chdir(dir);
+    chdir(getWorkingDir());
     return NOBUILD;
   }
-  chdir(dir);
+  chdir(getWorkingDir());
   return 0;
 }
 
@@ -54,5 +52,5 @@ void build(const char* pkg) {
   system("./hrpkgBuild");
   if (getVerbose())
     printf("Returning to parent directory\n");
-  chdir(dir);
+  chdir(getWorkingDir());
 }
