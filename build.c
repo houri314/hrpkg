@@ -8,26 +8,15 @@
 #include "path.h"
 
 uint8_t checkBuild(const char* pkg) {
-  if (getVerbose()) {
-    printf("Checking package %s for building\n", pkg);
-    printf("chdir() into %s\n", pkg);
-  }
   struct stat build;
-  chdir(pkg);
   if (stat("hrpkgBuild", &build) != 0) {
     chdir(getWorkingDir());
     return NOBUILD;
   }
-  chdir(getWorkingDir());
   return 0;
 }
 
 void build(const char* pkg) {
-  if (getVerbose()) {
-    printf("Building package\n", pkg);
-    printf("chdir() into %s\n", pkg);
-  }
-  chdir(pkg);
   if (getVerbose()) {
     uint8_t ch;
     printf("Check %s/hrpkgBuild script? (y/n)\n", pkg);
@@ -51,7 +40,4 @@ void build(const char* pkg) {
   }
   chmod("./hrpkgBuild", S_IRUSR | S_IXUSR | S_IWUSR);
   system("./hrpkgBuild");
-  if (getVerbose())
-    printf("Returning to parent directory\n");
-  chdir(getWorkingDir());
 }

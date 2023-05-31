@@ -94,11 +94,20 @@ int main(int argc, char** argv) {
     uint8_t ret = handlePkg(serv.pkg[i], serv.flags);
     printErr(ret);
     if (ret) continue; // Skip if package is not OK.
+    if (getVerbose())
+      printf("chdir() into %s\n", serv.pkg[i]);
+    chdir(serv.pkg[i]);
     ret = checkBuild(serv.pkg[i]);
     printErr(ret);
-    if (ret) continue; // Skip if package is not OK.
+    if (ret) {
+      chdir(getWorkingDir());
+      continue; // Skip if package is not OK.
+    } 
     if (serv.flags & FLAG_BUILD)
       build(serv.pkg[i]);
+    if (getVerbose())
+      printf("Returning to parent directory\n");
+    chdir(getWorkingDir());
   }
 
   return 0;
