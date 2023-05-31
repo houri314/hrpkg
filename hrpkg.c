@@ -10,7 +10,7 @@
 #include "defines.h"
 #include "utils.h"
 
-#include "build.h"
+#include "package.h"
 
 // Bruh I initially put uint8_t* here but then it segfaults
 // if I doesn't give an argument, which defeats the whole point.

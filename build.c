@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "build.h"
+#include "package.h"
 #include "utils.h"
 
 static char dir[255];
