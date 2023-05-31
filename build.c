@@ -41,6 +41,8 @@ void build(const char* pkg) {
         fgets(buffer, 100, hrpkgBuild);
       }
       printf("Execute? (y/n)\n");
+      fflush(stdout);
+      fflush(stdin);
       scanf("%c", &ch);
       if (ch == 'n') {
         printf("Skipped.\n");
