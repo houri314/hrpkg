@@ -1,0 +1,9 @@
+echo "This is a test package to see if it works"
+echo "Build raylib"
+
+rm -rf raylib/
+
+git clone https://github.com/raysan5/raylib --depth 1 --recurse-submodule
+cd raylib/src; make 
+
+echo "Building raylib complete"
