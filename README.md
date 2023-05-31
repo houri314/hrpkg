@@ -19,6 +19,7 @@ After building, use `./hrpkg -[IBFVCL] [package 1] [package 2] ...` to build/ins
 - I: Install packages.
 - B: Build packages.
 - F: Fetch packages.
+
 At the time, only -B is implemented.
 
 
